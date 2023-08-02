@@ -39,7 +39,8 @@
    - C/C++ Benchmarks: The size of C/C++ benchmarks is too large. Even after compression, it's around 100GB. We will release this benchmark later.
 
 5. ### Preprocessing of std traces
-   - This preprocessing takes a trace `input.std` as input and outputs a filtered trace `output.std`, in which thread-local events are removed
+   - This preprocessing takes a trace `input.std` as input and outputs a filtered trace `output.std`, in which thread-local events are removed.
+   - Additionally, all variables, s.t. all accesses to this variable are ordered by thread order and read-from relation are also removed.
    - To run this, `java -cp "[dir to rapid.jar]:[dir to rapid lib folder]:[dir to rapid lib/jgrapht folder]" FilterTrace [dir to input.std] [dir to output.std]`
 
 6. ### Run race detection on traces for SHB / SyncP / OSR
