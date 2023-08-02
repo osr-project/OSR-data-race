@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="rapid-internal">
+    <property environment="env"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
+    <path id="rapid-internal.classpath">
+        <pathelement location="bin"/>
+        <pathelement location="lib/lz4-1.3-SNAPSHOT.jar"/>
+        <pathelement location="lib/commons-cli-1.3.1.jar"/>
+        <pathelement location="lib/guava-24.1-jre.jar"/>
+        <pathelement location="lib/jgrapht-bundle-1.3.0.jar"/>
+	    <pathelement location="lib/jgrapht-demo-1.3.0.jar"/>
+	    <pathelement location="lib/jgrapht-guava-1.3.0.jar"/>
+	    <pathelement location="lib/jgrapht-ext-1.3.0.jar"/>
+	    <pathelement location="lib/jgrapht-io-1.3.0.jar"/>
+	    <pathelement location="lib/jgrapht-opt-1.3.0.jar"/>
+	    <pathelement location="lib/jgrapht-core-1.3.0.jar"/>
+	    <pathelement location="lib/guava-26.0-jre.jar"/>
+	    <pathelement location="lib/fastutil-8.2.2.jar"/>
+	    <pathelement location="lib/commons-lang3-3.8.1.jar"/>
+	    <pathelement location="lib/commons-text-1.5.jar"/>
+	    <pathelement location="lib/jheaps-0.9.jar"/>
+	    <pathelement location="lib/antlr4-runtime-4.7.1.jar"/>
+	    <pathelement location="lib/jgraphx-3.4.1.3.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+                <exclude name="notes/"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <exclude name="notes/"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="SoundFHBOffline">
+        <java classname="SoundFHBOffline" failonerror="true" fork="yes">
+            <arg line="-f=rv -p /Users/umang/Desktop/jigsaw"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="FHB">
+        <java classname="FHB" failonerror="true" fork="yes">
+            <arg line="-f=rv -p=&quot;/Users/umang/Box Sync/logs/fse_ziptrack/bin/bubblesort&quot;"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="RCP">
+        <java classname="RCP" failonerror="true" fork="yes">
+            <arg line="-f std -p /Users/umang/Repositories/rapid-internal/traces/Bensalem/std2.log"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="SHBEpoch">
+        <java classname="SHBEpoch" failonerror="true" fork="yes">
+            <arg line="-f=std -p=/Users/umang/Repositories/force-order/experiments/new_std/ex7.std -v=1"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="HBEpochOffline">
+        <java classname="HBEpochOffline" failonerror="true" fork="yes">
+            <arg line="-f std -p /Users/umang/Desktop/oopsla_download/mergesort/trace.txt"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="RCPDF">
+        <java classname="RCPDF" failonerror="true" fork="yes">
+            <arg line="-f std -p /Users/umang/Repositories/rapid-internal/traces/Bensalem/std2.log"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="Parse (3)">
+        <java classname="parse.std.Parse" failonerror="true" fork="yes">
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="SoundSHBEpochOffline">
+        <java classname="SoundSHBEpochOffline" failonerror="true" fork="yes">
+            <arg line="-f=rv -p=/Users/umang/Box\ Sync/logs/force_order_files/Nov-5-2016/bin/bufwriter -v=3"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="ConflictSerializabilityChecker">
+        <java classname="ConflictSerializabilityChecker" failonerror="true" fork="yes">
+            <arg line="-p=/Users/umang/Repositories/atomicity/tests/test10.std -f=std"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="convertRV2STD">
+        <java classname="PrintSTD" failonerror="true" fork="yes">
+            <arg line="-f rv -p /Users/umang/Desktop/jacontebe_traces/log4j2/1"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="ParseCSV">
+        <java classname="parse.csv.ParseCSV" failonerror="true" fork="yes">
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="MetaInfoRV">
+        <java classname="MetaInfo" failonerror="true" fork="yes">
+            <arg line="-f rv -p /Users/umang/Desktop/jacontebe_traces/log4j2/1"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="HBEpoch">
+        <java classname="HBEpoch" failonerror="true" fork="yes">
+            <arg line="-f=std -p=/Users/umang/Desktop/new_airlinetickets.std -v=1"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="LockSetTracerOffline">
+        <java classname="LockSetOffline" failonerror="true" fork="yes">
+            <arg line="-f rv -p /Users/umang/onedrive/ziptrack/Nov-11-2016/bin/bubblesort"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="LockSetTracer">
+        <java classname="LockSet" failonerror="true" fork="yes">
+            <arg line="-f rv -p /Users/umang/onedrive/ziptrack/Nov-11-2016/bin/mergesort"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="Parse (1)">
+        <java classname="parse.rr.Parse" failonerror="true" fork="yes">
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="GoldilocksOffline">
+        <java classname="GoldilocksOffline" failonerror="true" fork="yes">
+            <arg line="-f rv -p /Users/umang/box/logs/ziptrack/Nov-11-2016/bin/bufwriter -s"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="FHBOffline">
+        <java classname="FHBOffline" failonerror="true" fork="yes">
+            <arg line="-f=rr -p=/Users/umang/Desktop/deadlock.rr -v=1"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="Goodlock2">
+        <java classname="Goodlock2" failonerror="true" fork="yes">
+            <arg line="-f std -p /Users/umang/Repositories/rapid-internal/traces/Log4j2/std.log"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="ParseRROld">
+        <java classname="parse.rr.ParseRROld" failonerror="true" fork="yes">
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="SharedPrintRV">
+        <java classname="SharedPrint" failonerror="true" fork="yes">
+            <arg line="-f rv -p /Users/umang/Repositories/compressedtraces/example/rebuttal/bin_files/Test1"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="SoundSHB">
+        <java classname="SoundSHB" failonerror="true" fork="yes">
+            <arg line="-f=rv -p=/Users/umang/Box\ Sync/logs/force_order_files/Nov-5-2016/bin/bufwriter -v=3"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="GetOptions (1)">
+        <java classname="cmd.GetOptions" failonerror="true" fork="yes">
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="SHBOffline">
+        <java classname="SHBOffline" failonerror="true" fork="yes">
+            <arg line="-f std -p /Users/umang/Desktop/oopsla_download/airlinetickets/trace.txt -v=2"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="HBOffline">
+        <java classname="HBOffline" failonerror="true" fork="yes">
+            <arg line="-f std -p /Users/umang/Desktop/oopsla_download/airlinetickets/trace.txt -v=2"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="Print">
+        <java classname="Print" failonerror="true" fork="yes">
+            <arg line="-f std -p /Users/umang/Repositories/wcp/tracer/traces/Deadlock/std.log"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="AccessTimes">
+        <java classname="AccessTimes" failonerror="true" fork="yes">
+            <jvmarg line="-Xmx5000m -Xms5000m"/>
+            <arg line="-f=rr -p=/Users/umang/Desktop/deadlock.rr -v=1"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="ParseRoadRunner">
+        <java classname="parse.rr.ParseRoadRunner" failonerror="true" fork="yes">
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="SoundSHBEpoch">
+        <java classname="SoundSHBEpoch" failonerror="true" fork="yes">
+            <arg line="-f=rv -p=/Users/umang/Box\ Sync/logs/force_order_files/Nov-5-2016/bin/bufwriter -v=3"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="WCPOnline">
+        <java classname="WCPOnline" failonerror="true" fork="yes">
+            <arg line="-f=std -p=/Users/umang/Downloads/new.std -v=2"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="WCP">
+        <java classname="WCP" failonerror="true" fork="yes">
+            <arg line="-f std -p /Users/umang/Desktop/ex2.txt"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="PrintRV">
+        <java classname="Print" failonerror="true" fork="yes">
+            <arg line="-p=/Users/umang/Desktop/raytracer.rr -f=rr"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="FHB_test">
+        <java classname="FHB" failonerror="true" fork="yes">
+            <arg line="-f=csv -p=/Users/umang/Repositories/force-order/experiments/csv/ex2.csv -v=1"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="Goldilocks">
+        <java classname="Goldilocks" failonerror="true" fork="yes">
+            <arg line="-f rv -p /Users/umang/Desktop/jacontebe_traces/dbcp1/2"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="FileTest">
+        <java classname="FileTest" failonerror="true" fork="yes">
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="HB">
+        <java classname="HB" failonerror="true" fork="yes">
+            <arg line="-f std -p /Users/umang/Desktop/oopsla_download/airlinetickets/trace.txt -v=2"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="ParseRV">
+        <java classname="parse.rv.Parse" failonerror="true" fork="yes">
+            <arg line="/Users/umang/OneDrive\ -\ University\ of\ Illinois\ -\ Urbana/wcp/log-files/Nov-11-2016/log/benchmarks/bin/moldyn"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="RVParse">
+        <java classname="rvparse.RVParse" failonerror="true" fork="yes">
+            <arg line="/Users/umang/Box Sync/logs/ziptrack/Nov-11-2016/bin/account"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="SHB_test">
+        <java classname="SHB" failonerror="true" fork="yes">
+            <arg line="-f=csv -p=/Users/umang/Repositories/force-order/experiments/csv/ex2.csv -v=1"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="WiretapToSTD">
+        <java classname="WiretapToSTD" failonerror="true" fork="yes">
+            <arg line="/Users/umang/Repositories/wcp/tracer/traces/Deadlock/log.txt"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="SHBEpochOffline">
+        <java classname="SHBEpochOffline" failonerror="true" fork="yes">
+            <arg line="-f=rv -p=/Users/umang/Box\ Sync/logs/ziptrack/Nov-11-2016/bin/bufwriter"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="ParseStandard (1)">
+        <java classname="parse.std.ParseStandard" failonerror="true" fork="yes">
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+    <target name="WNC">
+        <java classname="WNC" failonerror="true" fork="yes">
+            <arg line="-f=std -p=/Users/umang/Repositories/wcp-deadlock/PLDI19/well-nesting-tests/trace1.std"/>
+            <classpath refid="rapid-internal.classpath"/>
+        </java>
+    </target>
+
+    <target name="jar" depends="init,build">
+        <jar basedir="bin" destfile="WCP.jar">
+            <manifest>
+                <attribute name="Built-By" value="${builder}" />
+                <attribute name="Built-On" value="${build-info.current-date}" />
+                <attribute name="Built-At" value="${build-info.current-time}" />
+            </manifest>
+        </jar>
+    </target>
+
+</project>
